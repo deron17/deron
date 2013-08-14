@@ -2,8 +2,8 @@
 
 from fabric.api import *
 
-REPO_URL     = 'git@github.com:username/repo.git'
-PROJECT_DIR  = '$HOME/projects/projectname'
+REPO_URL     = 'https://github.com/deron17/deron.git'
+PROJECT_DIR  = '/home/vokaladmin/DjangoProjects/fabrictest'
 PROJECT_NAME = 'projectname'
 SERVER_NAME  = 'projectname.servername' # I use gunicorn, so i have projectname.gunicorn
 
@@ -11,6 +11,11 @@ env.roledefs['www'] = ['www1.example.com']
 
 # For ZSH Uncomment this line
 #env.shell = '/usr/bin/env zsh -i -c'
+
+env.hosts = 'http://127.0.0.1:8000/'
+env.user = 'vokaladmin'
+env.password = 'vokal106'
+
 
 def pull():
     with cd(PROJECT_DIR):
@@ -54,3 +59,5 @@ def deploy():
         migrate_database()
         collect_static()
         restart_server()
+
+#logging.getLogger("paramiko").setLevel(logging.DEBUG)
