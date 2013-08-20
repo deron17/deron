@@ -12,14 +12,14 @@ env.roledefs['www'] = ['www1.example.com']
 # For ZSH Uncomment this line
 #env.shell = '/usr/bin/env zsh -i -c'
 
-env.hosts = 'http://127.0.0.1:8000/'
-env.user = 'vokaladmin'
-env.password = 'vokal106'
-
 
 def pull():
     with cd(PROJECT_DIR):
-        run('git pull')
+        local('git pull')
+
+def status():
+    with cd (PROJECT_DIR):
+        local('git status')
 
 def install_packages():
     with cd(PROJECT_DIR):
