@@ -31,3 +31,4 @@ def pull2():
 def deneme():
     commit()
     test()
+    push()
