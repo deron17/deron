@@ -5,7 +5,7 @@ import sys
 
 code_dir = '/home/vokaladmin/DjangoProjects/fabrictest'
 
-def test1():
+def selenium():
     with settings(warn_only=True):
         result = local('python login.py', capture=True)
     if result.failed and not confirm("Tests failed. Continue anyway?"):
@@ -13,6 +13,9 @@ def test1():
 
 def test():
     local('python login.py')
+
+def status():
+    local('git status')
 
 def commit():
     local("git add . && git commit -m 'aasd'")
@@ -23,12 +26,12 @@ def push():
 def pull():
     with cd(code_dir):
         with settings(warn_only=True):
-            result = local("git pull", capture=True)
+            result = local("git pull origin master")
     if result.failed:
-        abort("Aborting asdasds")
+        abort("Aborting")
 
 def pull2():
-    local("git pull")
+    local("git pull origin master")
 
 def deneme():
     commit()
@@ -41,9 +44,15 @@ def deploy():
             local('git reset --soft HEAD')
             local('git pull origin master')
             local('git add -A')
-            commit = local('git commit -a -m "Latest Selenium screenshots for .."')
+            commit = local('git commit -a -m "it is a automatic commit .."')
             if commit.failed:
                 print 'Nothing to commit, exiting...'
                 sys.exit(0)
             else:
                 local('git push -u origin master')
+
+
+def startprocess():
+    pull()
+    selenium()
+    push()
