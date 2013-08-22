@@ -8,7 +8,7 @@ import unittest, time, re
 class Loginandlike(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(0)
         self.base_url = "http://www.influenster.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
