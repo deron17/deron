@@ -7,9 +7,11 @@ code_dir = '/home/vokaladmin/DjangoProjects/fabrictest'
 
 def selenium():
     with settings(warn_only=True):
-        result = local('python login.py', capture=True)
+        result = local('python loginandlike.py', capture=True)
     if result.failed and not confirm("Tests failed. Continue anyway?"):
         abort("Aborting at user request.")
+    else:
+        print 'test is completed successfully!'
 
 def test():
     local('python login.py')
