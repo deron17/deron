@@ -3,6 +3,8 @@ from fabric.api import local, settings, abort, run, cd
 from fabric.contrib.console import confirm
 import sys
 
+code_dir = '/home/vokaladmin/DjangoProjects/fabrictest'
+
 def test1():
     with settings(warn_only=True):
         result = local('python login.py', capture=True)
@@ -19,7 +21,6 @@ def push():
     local("git push origin master")
 
 def pull():
-    code_dir = '/home/vokaladmin/DjangoProjects/fabrictest'
     with cd(code_dir):
         with settings(warn_only=True):
             result = local("git pull", capture=True)
@@ -35,7 +36,7 @@ def deneme():
     push()
 
 def deploy():
-    with cd('/home/vokaladmin/DjangoProjects/fabrictest'):
+    with cd(code_dir):
         with settings(warn_only=True):
             local('git reset --soft HEAD')
             local('git pull origin master')
