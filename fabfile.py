@@ -23,7 +23,7 @@ def commit():
     local("git add . && git commit -m 'aasd'")
 
 def push():
-    local("git push origin master")
+    local("git push origin product")
 
 def pull():
     with cd(code_dir):
