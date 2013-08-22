@@ -1,6 +1,7 @@
 from __future__ import with_statement
 from fabric.api import local, settings, abort, run, cd
 from fabric.contrib.console import confirm
+import sys
 
 def test1():
     with settings(warn_only=True):
@@ -32,3 +33,16 @@ def deneme():
     commit()
     test()
     push()
+
+def deploy():
+    with cd('/home/vokaladmin/DjangoProjects/fabrictest'):
+        with settings(warn_only=True):
+            local('git reset --soft HEAD')
+            local('git pull origin master')
+            local('git add -A')
+            commit = local('git commit -a -m "Latest Selenium screenshots for .."')
+            if commit.failed:
+                print 'Nothing to commit, exiting...'
+                sys.exit(0)
+            else:
+                local('git push -u origin master')
